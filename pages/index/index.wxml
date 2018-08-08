@@ -1,8 +1,9 @@
 <!--pages/index/index.wxml-->
 <view class='indexContainer'>
-  <image src='/images/avatar/0.png' class='indexImg'></image>
-  <text class='username'>hello {{msg}}</text>
-  <view class='goStudy' bindtap='clickParent'>
-    <text bindtap='clickChild'>开启小程序之旅</text>
+  <image src='{{userInfo.avatarUrl}}' class='indexImg'></image>
+  <button style='display: {{isShow? "block":"none"}}' open-type='getUserInfo' bindgetuserinfo='handleUserInfo'>获取用户登录信息</button>
+  <text class='username'>hello {{userInfo.nickName}}</text>
+  <view class='goStudy' catchtap='handleClick'>
+    <text>开启小程序之旅</text>
   </view>
 </view>
