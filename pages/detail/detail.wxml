@@ -1,6 +1,7 @@
 <!--pages/detail/detail.wxml-->
 <view class='detail-container'>
-  <image class='headImg' src='{{detailData.detail_img}}'></image>
+  <image class='headImg' src='{{isMusicPlay ? detailData.music.coverImgUrl : detailData.detail_img}}'></image>
+  <image class='musicImg' catchtap='handleMusicPlay' src='{{isMusicPlay ? "/images/music/music-start.png" : "/images/music/music-stop.png"}}'></image>
   <view class='avatar-date'>
     <image class='avatar' src='{{detailData.avatar}}'></image>
     <text>美国队长</text>
@@ -16,6 +17,6 @@
     </view>
     <view class='line'></view>
   </view>
-  <button>转发此文章</button>
+  <button open-type='share'>转发此文章</button>
   <text class='content'>{{detailData.detail_content}}</text>
 </view>

@@ -1,6 +1,8 @@
 // pages/detail/detail.js
 let datas = require('../../datas/list-data.js')
 // console.log(datas)
+let appDatas = getApp()
+console.log(appDatas, typeof appDatas)
 Page({
 
   /**
@@ -9,7 +11,8 @@ Page({
   data: {
     detailData: {},
     index: null,   // 定义 index用来接收并保存传入的index
-    isCollected: false  // 默认没有收藏
+    isCollected: false,  // 默认没有收藏
+    isMusicPlay: false   // 默认停止播放
   },
   // 点击切换收藏
   switchCollect () {
@@ -61,11 +64,32 @@ Page({
       }
     })
   },
+  // 点击播放音乐
+  handleMusicPlay() {
+    // 处理音乐播放
+    let isMusicPlay = !this.data.isMusicPlay
+    // 更新状态
+    this.setData({
+      isMusicPlay
+    })
+    // 控制音乐播放
+    if (isMusicPlay) {
+      // 播放
+      let {dataUrl, title} = this.data.detailData.music
+      wx.playBackgroundAudio({
+        dataUrl,
+        title
+      })
+    } else {
+      // 暂停音乐
+      wx.pauseBackgroundAudio()
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    // console.log(options)
     let {index} = options
     // 更新detailData
     this.setData({
@@ -73,7 +97,7 @@ Page({
       detailData: datas.list_data[index]
     })
     // 根据本地缓存的数据判断用户是否收藏过当前的文章
-    let detailStorage = wx.getStorageSync('isCollected')  // 可能为空，从来没有收藏过
+    let detailStorage = wx.getStorageSync('isCollected')        // 可能为空，从来没有收藏过
     if (!detailStorage) {
       // 在缓存中初始化空对象
       wx.setStorageSync('isCollected', {})
@@ -84,6 +108,34 @@ Page({
         isCollected: true
       })
     }
+    // 监听音乐播放
+    wx.onBackgroundAudioPlay(() =>{
+      console.log('音乐播放')
+      // 修改isMusicPlay状态
+      this.setData({
+        isMusicPlay: true
+      })
+      // 修改appDatas中的数据
+      appDatas.data.isPlay = true
+      appDatas.data.pageIndex = index
+    })
+    // 判断音乐是否在播放
+    if (appDatas.data.isPlay && appDatas.data.pageIndex === index) {
+      this.setData({
+        isMusicPlay: true
+      })
+    }
+    // 监听音乐暂停
+    wx.onBackgroundAudioPause(() => {
+      console.log('音乐暂停')
+      // 修改isMusicPlay
+      this.setData({
+        isMusicPlay: false
+      })
+      // 修改appDatas中的数据
+      appDatas.data.isPlay = false
+      // 下标不用传，暂停必须是先播放，而播放的时候就已经存入index
+    })
   },
 
   /**
