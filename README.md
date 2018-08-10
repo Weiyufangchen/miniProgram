@@ -64,3 +64,6 @@
 
 1. 如何知道音乐在播放或者是暂停
 2. 将播放音乐的页面状态缓存到appData中
+
+###Tip
+1. tip: wx.navigateTo 和 wx.redirectTo 不允许跳转到 tabbar 页面，只能用 wx.switchTab 跳转到 tabbar 页面

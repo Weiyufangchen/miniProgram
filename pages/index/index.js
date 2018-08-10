@@ -64,7 +64,7 @@ Page({
 
   // 点击跳转list界面
   handleClick () {
-    wx.navigateTo({
+    wx.switchTab({
       url: '/pages/list/list',
     })
   },
