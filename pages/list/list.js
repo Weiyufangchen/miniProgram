@@ -1,6 +1,6 @@
 // pages/list/list.js
 let datas = require('../../datas/list-data.js')  // 只能写相对路径
-console.log(datas, typeof datas)
+// console.log(datas, typeof datas)
 Page({
 
   /**

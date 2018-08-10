@@ -12,7 +12,7 @@
     <view class='collection-share'>
       <image catchtap='switchCollect' wx:if='{{!isCollected}}' src='/images/icon/collection-anti.png'></image>
       <image catchtap='switchCollect' wx:if='{{isCollected}}' src='/images/icon/collection.png'></image>
-      <image src='/images/icon/share.png'></image>
+      <image catchtap='handleShare' src='/images/icon/share.png'></image>
     </view>
     <view class='line'></view>
   </view>

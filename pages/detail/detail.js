@@ -1,6 +1,6 @@
 // pages/detail/detail.js
 let datas = require('../../datas/list-data.js')
-console.log(datas)
+// console.log(datas)
 Page({
 
   /**
@@ -46,6 +46,20 @@ Page({
       },
     })
 
+  },
+  // 点击分享
+  handleShare () {
+    // 显示底部操作菜单
+    wx.showActionSheet({
+      itemList: ['分享到朋友圈', '分享到qq空间', '分享到微博'],
+      success: (res) => {
+        // console.log(res.tapIndex)
+        wx.showToast({
+          title: '分享成功',
+          icon: 'success'
+        })
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载
