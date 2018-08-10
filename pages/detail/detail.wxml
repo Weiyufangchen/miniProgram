@@ -10,7 +10,8 @@
   <text class='company'>{{detailData.title}}</text>
   <view class='collection-share-container'>
     <view class='collection-share'>
-      <image src='/images/icon/collection-anti.png'></image>
+      <image catchtap='switchCollect' wx:if='{{!isCollected}}' src='/images/icon/collection-anti.png'></image>
+      <image catchtap='switchCollect' wx:if='{{isCollected}}' src='/images/icon/collection.png'></image>
       <image src='/images/icon/share.png'></image>
     </view>
     <view class='line'></view>
