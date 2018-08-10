@@ -36,3 +36,16 @@
 
 1. 冒泡事件： bind + 事件名
 2. 非冒泡事件： catch + 事件名
+
+### 模版template
+1. 定义：template 属性：name（标识模版）
+2. 使用：template 属性： is（模版的name）
+3. 引入模版结构：<import src='路径'>
+4. 引入模版样式：@import '路径'
+5. 传参：data='{{...item}}'
+
+### 列表渲染
+1. wx：for
+2. wx：key为每个个体元素进行标记
+3. 遍历的个体：item
+4. 遍历的下标：index
