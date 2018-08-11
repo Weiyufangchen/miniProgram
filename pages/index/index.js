@@ -64,6 +64,7 @@ Page({
 
   // 点击跳转list界面
   handleClick () {
+    // 1. tip: wx.navigateTo 和 wx.redirectTo 不允许跳转到 tabbar 页面，只能用 wx.switchTab 跳转到 tabbar 页面
     wx.switchTab({
       url: '/pages/list/list',
     })
